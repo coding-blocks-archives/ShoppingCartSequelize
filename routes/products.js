@@ -1,10 +1,12 @@
 const express = require('express')
-const { Products } = require('../db')
+const { Products, Vendors } = require('../db')
 
 const route = express.Router()
 
 route.get('/', async (req, res) => {
-  res.send(await Products.findAll())
+  res.send(await Products.findAll({
+    include: [Vendors]
+  }))
 })
 
 route.post('/', async (req, res) => {
