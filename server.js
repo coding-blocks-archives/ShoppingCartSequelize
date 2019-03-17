@@ -16,7 +16,7 @@ app.use('/vendors', routes.vendors)
 app.use('/products', routes.products)
 app.use('/users', routes.users)
 
-db.sync()
+db.sync({ alter: true })
   .then(() => {
     app.listen(9876, () => {
       console.log('Server started on http://localhost:9876')
