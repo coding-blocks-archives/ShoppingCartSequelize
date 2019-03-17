@@ -6,6 +6,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.use(express.static(__dirname + '/public'))
+
 const routes = {
   vendors: require('./routes/vendors'),
   products: require('./routes/products'),
