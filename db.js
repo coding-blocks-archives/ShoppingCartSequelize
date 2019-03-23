@@ -2,9 +2,9 @@ const Sequelize = require('sequelize')
 
 const db = new Sequelize({
   dialect: 'mysql',
-  database: 'sampledb4',
-  username: 'sampleuser4',
-  password: 'samplepass4'
+  database: 'sampledb1',
+  username: 'sampleuser1',
+  password: 'samplepass1'
 })
 
 const Vendors = db.define('vendor', {

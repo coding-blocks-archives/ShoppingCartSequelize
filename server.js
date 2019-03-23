@@ -12,11 +12,13 @@ const routes = {
   vendors: require('./routes/vendors'),
   products: require('./routes/products'),
   users: require('./routes/users'),
+  cartitems: require('./routes/cartitems'),
 }
 
 app.use('/vendors', routes.vendors)
 app.use('/products', routes.products)
 app.use('/users', routes.users)
+app.use('/cartitems', routes.cartitems)
 
 db.sync({ alter: true })
   .then(() => {

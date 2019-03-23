@@ -26,7 +26,6 @@ route.post('/', async (req, res) => {
   const newVendor = await Vendors.create({
     name: req.body.name
   })
-
   res.send(newVendor)
 })
 
