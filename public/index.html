@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>shoppingCartSequelize</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Welcome to Shopping Cart</h1>
+    <div class="card">
+        <div class="card-body">
+            <h3>Vendors</h3>
+            <input type="text" name="name" id="vendorName" placeholder="Vendor Name">
+            <button id="submitVendor">➕</button>
+            <ul id="vendorsList">Vendors List
+                
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3>Products</h3>
+            <input type="text" name="name" id="productName" placeholder="Product Name">
+            <input type="number" name="price" id="productPrice" placeholder="Price">
+            <input type="number" name="quantity" id="productQuantity" placeholder="Quantity" min="1">
+            <select name="vendorId" form="productForm" id="vendors"></select>
+            <button type="button" id="submitProduct">➕</button>
+            <ul id="productsList">Products List</ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3>Catalog</h3>
+            
+            <div class="card-group" id="catalogContainer"></div>
+            <form>
+            </form>
+            
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3>Cart</h3>
+            <div class="card-group" id="cartContainer"></div>
+        </div>
+    </div>
+</body>
+</html>
