@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="bootstrap.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+    <script src="products.js"></script>
+</head>
+<style>
+        p{
+            font-size: 40pt;
+        }
+    </style>
+<body>
+        <p class="text-center">PRODUCTS</p>
+        <div class="input-group mb-3">
+                <input type="text" id="val" class="form-control" placeholder="Product Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="number" id="price" class="form-control" placeholder="Price" aria-describedby="basic-addon2">
+                <input type="number" id="qua" class="form-control" placeholder="Quantity" aria-describedby="basic-addon2">
+                <select class="form-control" id="list" aria-describedby="basic-addon2" >
+                        <option value="" style="display:none">Choose Vendor</option>
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" id="addv" type="button">ADD</button>
+                </div>
+                
+         </div>
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Vendor Name</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <th scope="col">1</th>
+                        <td >Iphone</td>
+                        <td >20000</td>
+                        <td >4</td>
+                        <td>apple</td>
+                    </tr>
+
+                    
+                </tbody>
+            </table>
+    
+</body>
+</html>
