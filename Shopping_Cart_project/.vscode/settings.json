@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "/home/anishlinux/Desktop/Web Dev1/Shopping_Cart_project/test.db",
+            "dialect": "SQLite",
+            "name": "Shopping_cart"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
