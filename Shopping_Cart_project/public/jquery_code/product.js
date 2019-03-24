@@ -2,13 +2,24 @@ $(async ()=>{
     let count1 = 0
     let count2=0
     let add=$('#add')
-    add.click(()=>{
+    $.get('/products/allProd',(data)=>{
+        for(d of data){
+            $('#select').append(`<option value="${d.id}">${d.name}</option>`)
+        }
+    })
+    add.click(async ()=>{
         if(count1==0){
-             $('#container').append(`<form id='form'>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea6">VendorId</label>
-            <textarea class="form-control" id="exampleFormControlTextarea6" rows="1"></textarea>
-        </div>
+            await $.get('/vendors',(data)=>{
+                $('#container').append(`<form id='form'>
+                Vendor<br>
+            <select id="select1" style = "margin:1rem" class="custom-select">
+            </select>
+            </form>`)
+                for(d of data){
+                    $('#select1').append(`<option value="${d.id}">${d.name}</option>`)
+                }
+            })
+            $('#form').append(`
         <div class="form-group">
             <label for="exampleFormControlTextarea2">Name</label>
             <textarea class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
@@ -21,8 +32,7 @@ $(async ()=>{
             <label for="exampleFormControlTextarea7">Price</label>
             <textarea class="form-control" id="exampleFormControlTextarea7" rows="1"></textarea>
         </div>
-        <button id ="submit2" type="button" class="btn btn-success">Submit</button>
-    </form>`)
+        <button id ="submit2" type="button" class="btn btn-success">Submit</button>`)
     count1++
     add.text('Close')
         }   
@@ -33,7 +43,7 @@ $(async ()=>{
         } 
         $('#submit2').click(()=>{
             $.post('/products',{
-                vendorId:$('#exampleFormControlTextarea6').val(),
+                vendorId:$('#select1').val(),
                 name:$('#exampleFormControlTextarea2').val(),
                 manufacturer:$('#exampleFormControlTextarea3').val(),
                 price:$('#exampleFormControlTextarea7').val(),
@@ -45,41 +55,50 @@ $(async ()=>{
             })
         })
     })
-    $('#add1').click(()=>{
+    $('#add1').click(async ()=>{
         if(count2==0){
-             $('#container').append(`<form id='form1'>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea4">Name</label>
-            <textarea class="form-control" id="exampleFormControlTextarea4" rows="1"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea5">VendorId</label>
-            <textarea class="form-control" id="exampleFormControlTextarea5" rows="1"></textarea>
-        </div>
-        <button id ="submit3" type="button" class="btn btn-success">Submit</button>
-    </form>`)
+            await $.get('/products/allProd',(data)=>{
+                $('#container1').append(`<form id='form2'>
+                    Product Name <br>
+                <select id="select2" style = "margin:1rem" class="custom-select">
+                </select>
+                </form>`)
+                    for(d of data){
+                        $('#select2').append(`<option value="${d.id}">${d.name}</option>`)
+                    }
+                
+                }
+            )
+            await $.get('/vendors',(data)=>{
+                $('#form2').append(`
+                Vendor<br>
+            <select id="select3" style = "margin:1rem" class="custom-select">
+            </select>`)
+                for(d of data){
+                    $('#select3').append(`<option value="${d.id}">${d.name}</option>`)
+                }
+            $('#form2').append(`<button id ="submit3" type="button" class="btn btn-success">Submit</button>`)
+            })
     count2++
     $('#add1').text('Close')
         }   
         else{
-            $('#form1').remove()
-            $('#add1').text('Delete Vendors')
+            $('#form2').remove()
+            $('#add1').text('Delete Products')
             count2--
         } 
         $('#submit3').click(()=>{
             $.post('/products/delete',{
-                name:$('#exampleFormControlTextarea4').val(),
-                vendorId:$('#exampleFormControlTextarea5').val(),
+                id:$('#select2').val(),
+                vendorId:$('#select3').val(),
             },(data)=>{
-                $('#exampleFormControlTextarea4').val("")
-                $('#exampleFormControlTextarea5').val("")
             })
         })
     })
     $('#details').click(()=>{
         $('#list').empty()
         $.get('/products/all',{
-            name:$('#input').val()
+            id:$('#select').val()
         },(data)=>{
             $('#input').val("")
             if(data.length!=0){

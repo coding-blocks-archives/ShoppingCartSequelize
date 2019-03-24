@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <script src = "https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src = "./jquery_code/product.js"></script>
 </head>
 <body>
     <div class="container" style="margin:7rem">
         <h3>Product Details</h3>
-        <input id="input" type="text" name="Vendor's Name"><br>Type "Mac Book Pro 13"..Dropdown not working
+        <select id="select" class="custom-select">
+        </select>
         <button id="details" type="button" style="margin-top:1rem" class="btn btn-success">Submit</button>
         <ul id="list" class="list-group">
         </ul>

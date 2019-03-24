@@ -2,6 +2,11 @@ $(async ()=>{
     let count1 = 0
     let count2=0
     let add=$('#add')
+    $.get('/vendors',(data)=>{
+        for(d of data){
+            $('#select').append(`<option value="${d.id}">${d.name}</option>`)
+        }
+    })
     add.click(()=>{
         if(count1==0){
              $('#container').append(`<form id='form'>
@@ -33,19 +38,23 @@ $(async ()=>{
             })
         })
     })
-    $('#add1').click(()=>{
+    $('#add1').click(async ()=>{
         if(count2==0){
-             $('#container').append(`<form id='form1'>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea4">Name</label>
-            <textarea class="form-control" id="exampleFormControlTextarea4" rows="1"></textarea>
-        </div>
-        <div class="form-group">
+            await $.get('/vendors',(data)=>{
+                $('#container1').append(`<form id='form1'>
+            <div class="form-group">
+            <select id="select3" class="custom-select">
+            </select>
             <label for="exampleFormControlTextarea5">Password</label>
             <textarea class="form-control" id="exampleFormControlTextarea5" rows="1"></textarea>
-        </div>
-        <button id ="submit3" type="button" class="btn btn-success">Submit</button>
-    </form>`)
+            </div>
+            <button id ="submit3" type="button" class="btn btn-success">Submit</button>
+        </form>`)
+                for(d of data){
+                    $('#select3').append(`<option value="${d.id}">${d.name}</option>`)
+                }
+            })
+
     count2++
     $('#add1').text('Close')
         }   
@@ -56,10 +65,9 @@ $(async ()=>{
         } 
         $('#submit3').click(()=>{
             $.post('/vendors/delete',{
-                name:$('#exampleFormControlTextarea4').val(),
+                id:$('#select3').val(),
                 password:$('#exampleFormControlTextarea5').val(),
             },(data)=>{
-                $('#exampleFormControlTextarea4').val("")
                 $('#exampleFormControlTextarea5').val("")
             })
         })
@@ -67,7 +75,7 @@ $(async ()=>{
     $('#details').click(()=>{
         $('#list').empty()
         $.get('/products',{
-            name:$('#input').val()
+            id:$('#select').val()
         },(data)=>{
             $('#input').val("")
             if(data.length!=0){

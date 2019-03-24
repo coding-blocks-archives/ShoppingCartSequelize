@@ -3,11 +3,12 @@ $(async ()=>{
     let count=0
     let buttonClick = {}
     let buttonId = {}
-    await $.get("/products",(data)=>{
+    await $.get("/products/allProd",(data)=>{
         for(d of data){
             count++;
             buttonClick[d.id] = 0
-            $("#main").append(`
+            if(d.vendorId>0 && d.name){
+                $("#main").append(`
         <div class="card-margin card col-xl-4 col-md-6 col-12" style="width: 18rem;display: inline-block;">
             <img src="../download.jpg" class="image-margin card-img-top">
             <div class="card-body">
@@ -16,6 +17,7 @@ $(async ()=>{
               <button id="${d.id}" type="button" class="btn btn-outline-dark button-margin">  + Add to Cart  </button>
             </div>
         </div>`)
+            }
         }
     })
     for(let i=0;i<count;i++){

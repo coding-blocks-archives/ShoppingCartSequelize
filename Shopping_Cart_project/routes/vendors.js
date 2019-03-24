@@ -28,7 +28,7 @@ route.post("/",async (req,res)=>{
 route.post("/delete",async (req,res)=>{
   Vendors.destroy({
     where:{
-      name:req.body.name,
+      id:req.body.id,
       password:req.body.password
     }
   }).then((vendors)=>{

@@ -6,7 +6,7 @@ route.get("/", async (req,res)=>{
   Products.findAll({
     include:[{
       model:Vendors,
-      where :{name:req.query.name}
+      where :{id:req.query.id}
     }]
   })
   .then((products)=>{res.send(products)})
@@ -16,11 +16,19 @@ route.get("/all", async (req,res)=>{
     model:Vendors,
   }],
   where:{
-    name:req.query.name
+    id:req.query.id
   }
 })
   .then((products)=>{res.send(products)})
 })
+route.get("/allProd", async (req,res)=>{
+  Products.findAll({include:[{
+    model:Vendors,
+  }],
+})
+  .then((products)=>{res.send(products)})
+})
+
 route.post("/",async (req,res)=>{
   db.sync().then(()=>Products.create({
     id:req.body.id,
@@ -38,7 +46,7 @@ route.post("/delete",async (req,res)=>{
   Products.destroy({
     where:{
       vendorId:req.body.vendorId,
-      name:req.body.name
+      id:req.body.id
     }
   }).then((products)=>{
     res.send("Delted")
